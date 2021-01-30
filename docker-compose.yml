@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 
 services:
   db:
     build: .docker/postgres
-    container_name: wish-list-db
+    container_name: wish-list-db-teste1
     ports:
       - 5432:5432
     volumes: 
@@ -13,14 +13,16 @@ services:
     environment:
       - POSTGRES_PASSWORD=docker
 
-
-  node:
+  app:
     build: .
-    container_name: wish-list-node
+    command: npm run start:dev
+    container_name: wish-list-node-teste1
     ports:
       - 3000:3000
     volumes:
-      - .:/home/node:z
+      - .:/usr/app
+      - /usr/app/node_modules
+   
 
     
   
