@@ -32,6 +32,12 @@ export class UserService {
     return user;
   }
 
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOneOrFail({ where: { email } });
+
+    return user;
+  }
+
   async updateOne(
     id: number,
     { name, email, password }: CreateUserDto,
